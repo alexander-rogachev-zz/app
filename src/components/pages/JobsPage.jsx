@@ -1,11 +1,11 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { inject, observer } from 'mobx-react'
 
 @inject("store") @observer
-export default class Home extends Component {
+export default class JobsPage extends React.Component {
 
     componentWillMount() {
-       this.props.store.filters.fetchData()
+        this.props.store.filters.fetchData()
     }
 
     constructor(props) {
@@ -20,7 +20,7 @@ export default class Home extends Component {
             <div>
                 <div>Jobs</div>
                 {jobs.items.map(item =>
-                    <div>
+                    <div key={item.id}>
                         <div>{item.id}</div>
                         <div>{item.publishDate}</div>
                         <div>{item.jobName}</div>
@@ -28,7 +28,7 @@ export default class Home extends Component {
                 )}
                 <div>Filters</div>
                 {filters.items.map(item =>
-                    <div>
+                    <div key={item.id}>
                         <div>{item.id}</div>
                     </div>
                 )}

@@ -18,11 +18,14 @@ module.exports = {
         publicPath: "/",
         filename: "app.[hash].js"
     },
+    resolve: {
+        extensions: ['.js', '.jsx', '.css', '.scss']
+    },
     devtool: "source-map",
     module: {
         loaders: [
             {
-                test: /\.js$/,
+                test: /\.js[x]?$/,
                 exclude: /node_modules/,
                 loader: "babel-loader",
                 query: {

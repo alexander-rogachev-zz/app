@@ -1,26 +1,20 @@
-require('./styles/main.scss');
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { AppContainer } from 'react-hot-loader';
+import { render } from 'react-dom';
+import { Router, Route, browserHistory} from 'react-router';
+import { Provider } from 'mobx-react';
+import IndexRedirect from 'react-router/lib/IndexRedirect';
+import Jobs from './components/pages/JobsPage';
 import App from './components/App';
-import stores from './stores/index';
+import stores from './stores';
 
-ReactDOM.render(
-  <AppContainer>
-    <App store={stores} />
-  </AppContainer>,
-  document.getElementById('root')
-);
+import './styles/main.scss';
 
-// Hot Module Replacement API
-if (module.hot) {
-  module.hot.accept('./components/App', () => {
-    ReactDOM.render(
-      <AppContainer>
-        <App store={stores} />
-      </AppContainer>
-      ,
-      document.getElementById('root')
-    );
-  });
-}
+render((
+    <Provider store={stores}>
+        <Router history={browserHistory}>
+            <Route name="root" path="/" component={App}>
+                <Route path="/jobs" component={Jobs}/>
+                <IndexRedirect to="/jobs"/>
+            </Route>
+        </Router>
+    </Provider>), document.getElementById('root'));

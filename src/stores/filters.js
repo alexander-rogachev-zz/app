@@ -19,7 +19,7 @@ class Filters {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': 'http://localhost:3000'
+                'Access-Control-Allow-Origin': '*'
             }
         };
         let {data} = await axios.get(`http://192.168.0.178:8090/v1/filter/locations`, config);
